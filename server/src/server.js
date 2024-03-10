@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const db = require("./models/index");
+const createError = require("http-errors");
 
 const app = express();
 
@@ -29,7 +30,7 @@ require("./routes/task.routes")(app);
 //   console.log("Drop and re-sync db...");
 // });
 app.all("*", (req, res, next) => {
-  next(new Error("Not found!"));
+  next(createError.NotFound());
 })
 
 app.use((err, req, res, next) => {
