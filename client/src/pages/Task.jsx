@@ -17,7 +17,11 @@ const Task = () => {
   });
   return (
     <Box p={4}>
-      <Flex justifyContent="end" m="10px auto" w="70dvw">
+      <Flex
+        justifyContent="end"
+        m="10px auto"
+        w={{ base: "90%", md: "70dvw" }}
+      >
         <Suspense fallback={<Spinner />}>
           <CreateTaskModal />
         </Suspense>
@@ -25,7 +29,7 @@ const Task = () => {
       <Box
         p={4}
         m="auto"
-        w="70dvw"
+        w={{ base: "90%", md: "70dvw" }}
         maxH="70dvh"
         overflowY="scroll"
         border="0.5px solid gray"

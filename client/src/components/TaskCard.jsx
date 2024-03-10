@@ -8,60 +8,40 @@ import {
   Heading,
   Button,
   IconButton,
-  useToast,
 } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { useMutation } from "@tanstack/react-query";
 import { deleteTask } from "../apis/deleteTask";
 import { queryClient } from "../main";
 import { changeCompleteStatus } from "../apis/changeCompleteStatus";
+import Toast from "./Toast";
 
 const TaskCard = ({ task }) => {
-  const toast = useToast();
+  const { AddToast } = Toast();
   const deleteTaskMutation = useMutation({
     mutationFn: deleteTask,
     onSuccess: () => {
-      toast({
-        title: "Task deleted successfully!",
-        status: "success",
-        duration: 1000,
-        isClosable: true,
-      });
+      AddToast("Task deleted successfully!", "success");
       queryClient.invalidateQueries({ queryKey: ["all_todos"] });
     },
     onError: () => {
-      toast({
-        title: "Something went wrong, please try again later!",
-        status: "error",
-        duration: 1000,
-        isClosable: true,
-      });
+      AddToast("Something went wrong, please try again later!", "error");
     },
   });
 
   const changeTaskStatus = useMutation({
     mutationFn: () => changeCompleteStatus(task.id, task.completed),
     onSuccess: () => {
-      toast({
-        title: "Task deleted successfully!",
-        status: "success",
-        duration: 1000,
-        isClosable: true,
-      });
+      AddToast("Task status updated!", "success");
       queryClient.invalidateQueries({ queryKey: ["all_todos"] });
     },
     onError: () => {
-      toast({
-        title: "Something went wrong, please try again later!",
-        status: "error",
-        duration: 1000,
-        isClosable: true,
-      });
+      AddToast("Something went wrong, please try again later!", "error");
     },
   });
   return (
-    <Card w="80%" m={4} p={4} size="sm" fontSize="sm">
-      <CardHeader>
+    <Card w="80%" m={4} p={0} size="sm" fontSize="sm" bg="lightblue">
+      <CardHeader p={2}>
         <Heading size="md">{task.title}</Heading>
       </CardHeader>
       <CardBody>
