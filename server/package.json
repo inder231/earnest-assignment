@@ -1,0 +1,36 @@
+{
+  "name": "earnest-server",
+  "version": "1.0.0",
+  "description": "Task management server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inder231/earnest-assignment.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "react",
+    "mysql",
+    "sequelize",
+    "rest",
+    "api"
+  ],
+  "author": "Inder",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/inder231/earnest-assignment/issues"
+  },
+  "homepage": "https://github.com/inder231/earnest-assignment#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.3",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.9.2",
+    "sequelize": "^6.37.1"
+  }
+}
