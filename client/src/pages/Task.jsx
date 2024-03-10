@@ -1,16 +1,9 @@
-import React from "react";
-import {
-  Box,
-  Flex,
-  Spinner,
-  Button,
-  Text,
-  VStack,
-  Heading,
-} from "@chakra-ui/react";
+import React, { Suspense, lazy } from "react";
+import { Box, Flex, Spinner, Text, VStack } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import { getAllTasks } from "../apis/getAllTasks";
 import TaskCard from "../components/TaskCard";
+const CreateTaskModal = lazy(() => import("../components/AddTaskModal"));
 
 const Task = () => {
   const {
@@ -25,7 +18,9 @@ const Task = () => {
   return (
     <Box p={4}>
       <Flex justifyContent="end">
-        <Button colorScheme="teal">Add Task</Button>
+        <Suspense fallback={<Spinner />}>
+          <CreateTaskModal />
+        </Suspense>
       </Flex>
       <Box
         p={4}
@@ -33,8 +28,17 @@ const Task = () => {
         w="70dvw"
         maxH="70dvh"
         overflowY="scroll"
-        shadow={"base"}
+        border="0.5px solid gray"
         borderRadius="md"
+        sx={{
+          "&::-webkit-scrollbar": {
+            width: "8px",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            bg: "blue.400",
+            borderRadius: "sm",
+          },
+        }}
       >
         {/* Rendering task list here... */}
         {isLoadingAllTasks ? (
