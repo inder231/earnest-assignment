@@ -1,4 +1,40 @@
-# Docs
+# Task Manager
+
+## Get started:
+- To run the application,
+- `React app`
+  - Navigate to `client` folder
+  - Run `npm install`
+  - Run `npm run dev`
+
+- `Node - Express - MySQL server`
+  - Navigate to `server` folder
+  - Run `npm install`
+  - Run `npm install nodemon` ( if not a global dependency) to run the server in development mode
+  - Run `npm run dev` for development mode
+  - Run `npm start`
+
+- Make sure to have MySQL workbench to run application locally.
+
+
+- Create a `.env`. files and add the necessary environment variables, as shown in `.env.example` file
+
+
+
+
+
+## UI:
+
+#### Create a task:
+- Click on `Add Task` and provide task `title` and `description` and hit enter to add a new task.
+
+#### Update task status
+- Click on `Set not completed` or `Set completed` to update the task status.
+
+#### Delete a task
+- Click on `Delete` icon to delete the task
+
+<br>
 
 ## API endpoints
 
