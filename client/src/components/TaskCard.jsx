@@ -40,7 +40,7 @@ const TaskCard = ({ task }) => {
     },
   });
   return (
-    <Card w="80%" m={4} p={0} size="sm" fontSize="sm" bg="lightblue">
+    <Card w="80%" m={4} p={0} size="sm" fontSize="sm" bg="lightgray">
       <CardHeader p={2}>
         <Heading size="md">{task.title}</Heading>
       </CardHeader>
