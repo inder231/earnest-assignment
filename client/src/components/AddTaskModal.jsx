@@ -12,39 +12,30 @@ import {
   FormLabel,
   Input,
   Flex,
-  useToast,
 } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
 import { createTask } from "../apis/createTask";
 import { queryClient } from "../main";
+import Toast from "./Toast";
 
 const AddTaskModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const toast = useToast();
   const [task, setTask] = React.useState({ title: "", description: "" });
+  const { AddToast } = Toast();
 
   const addNewTaskMutation = useMutation({
     mutationFn: createTask,
     onSuccess: () => {
-      toast({
-        title: "Task created successfully!",
-        status: "success",
-        duration: 1000,
-        isClosable: true,
-      });
+      AddToast("Task added successfully!", "success");
+      setTask({ title: "", description: "" });
       queryClient.invalidateQueries({ queryKey: ["all_todos"] });
     },
     onError: () => {
-      toast({
-        title: "Something went wrong, please try again later!",
-        status: "error",
-        duration: 1000,
-        isClosable: true,
-      });
+      AddToast("Something went wrong, please try again later!", "error");
     },
     onSettled: () => {
-        onClose();
-    }
+      onClose();
+    },
   });
 
   const handleTaskValueChange = (e) => {
@@ -56,6 +47,7 @@ const AddTaskModal = () => {
     e.preventDefault();
     addNewTaskMutation.mutate(task);
   };
+
   return (
     <>
       <Button onClick={onOpen} colorScheme="teal" isTruncated size="sm">
@@ -94,11 +86,7 @@ const AddTaskModal = () => {
                     onChange={handleTaskValueChange}
                   />
                 </FormControl>
-                <Button
-                  type="submit"
-                  colorScheme="green"
-                  size="sm"
-                >
+                <Button type="submit" colorScheme="green" size="sm">
                   Create
                 </Button>
               </Flex>

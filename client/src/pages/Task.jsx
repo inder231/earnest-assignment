@@ -17,7 +17,7 @@ const Task = () => {
   });
   return (
     <Box p={4}>
-      <Flex justifyContent="end">
+      <Flex justifyContent="end" m="10px auto" w="70dvw">
         <Suspense fallback={<Spinner />}>
           <CreateTaskModal />
         </Suspense>
